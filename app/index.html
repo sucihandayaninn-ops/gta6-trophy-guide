@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100e18">
+  <title>GTA VI Trophy Guide · Leonida Ledger</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23ff8c71'/%3E%3Cpath d='M9 9v14h14v-5h-9V9z' fill='%23100e18'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="data/trophies.js"></script>
+  <script defer src="progress.js"></script>
+  <script defer src="roadmap.js"></script>
+  <script defer src="skyline.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#trophies" data-view="trophies">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="currentColor"/><path d="M9 8v16h14v-4h-9V8zm10 0v9h4V8z" fill="#17111e"/></svg>
+        <span>LEONIDA <b>LEDGER</b></span>
+      </a>
+      <nav aria-label="Guide navigation">
+        <a href="#trophies" data-view="trophies" aria-current="page">Trophies</a>
+        <a href="#roadmap" data-view="roadmap">Roadmap</a>
+      </nav>
+      <div class="top-status"><span id="demo-label" hidden>Demo save</span><span class="offline"><i></i>Offline guide</span></div>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <canvas id="skyline" width="780" height="310" aria-hidden="true"></canvas>
+      <div class="hero-copy">
+        <p class="eyebrow hero-kicker">GRAND THEFT AUTO VI <span></span> PLAYSTATION 5</p>
+        <h1 id="hero-title">GTA VI <em>TROPHY GUIDE</em></h1>
+        <p class="hero-description">All 55 trophies. Your route to platinum.</p>
+      </div>
+      <span class="hero-location" aria-hidden="true">VICE CITY<span> / </span> LEONIDA</span>
+    </section>
+
+    <section class="progress-card" aria-label="Trophy progress">
+      <div class="progress-main">
+        <div class="progress-heading">
+          <div><p class="eyebrow">TROPHIES EARNED</p><strong id="earned-count">0</strong><span class="progress-total"> / 55</span></div>
+          <strong id="completion">0%</strong>
+        </div>
+        <progress id="progress" max="55" value="0" aria-label="Trophy completion"></progress>
+      </div>
+      <div class="platinum-progress">
+        <p class="eyebrow">ROAD TO PLATINUM</p>
+        <p><strong id="platinum-count">0 / 54</strong> <span>required</span></p>
+        <div id="platinum-status">55 trophies in the ledger</div>
+      </div>
+      <div id="grade-counts" class="grade-counts" aria-label="Progress by trophy grade"></div>
+    </section>
+
+    <section id="trophies" aria-labelledby="ledger-title">
+      <div class="section-heading">
+        <div><p class="eyebrow section-kicker">THE CHECKLIST</p><h2 id="ledger-title">Trophy ledger</h2></div>
+        <div class="save-actions">
+          <label class="spoiler-control"><input id="spoilers" type="checkbox" role="switch"><span class="switch-track" aria-hidden="true"></span> Hide story spoilers</label>
+          <button class="button" id="export" type="button">Export JSON</button>
+          <label class="button import-button">Import JSON<input id="import" type="file" accept=".json,application/json"></label>
+        </div>
+      </div>
+      <div id="save-message" role="status" hidden></div>
+      <div class="filters" aria-label="Trophy filters">
+        <div class="filters-line">
+          <label class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 5 5"/></svg>
+            <input type="search" id="search" aria-label="Search trophy names or descriptions" placeholder="Search trophies…">
+          </label>
+          <label class="select-label"><span>Category</span><select id="kind" aria-label="Filter by category"><option value="all">All categories</option><option value="story">Story</option><option value="activity">Activities</option><option value="collectible">Collectibles</option><option value="stranger">Strangers</option><option value="free-roam">Free roam</option><option value="completion">Completion</option></select></label>
+          <label class="select-label"><span>Missable</span><select id="risk" aria-label="Filter by missability"><option value="all">Any missability</option><option value="window">Potentially missable</option><option value="check">Availability unclear</option><option value="none">No risk indicated</option><option value="story">Story progress</option></select></label>
+          <label class="select-label"><span>Status</span><select id="status" aria-label="Filter by status"><option value="all">Any status</option><option value="unearned">Unearned</option><option value="earned">Earned</option></select></label>
+          <label class="select-label"><span>Sort</span><select id="sort" aria-label="Sort trophies"><option value="official">Official order</option><option value="roadmap">Roadmap order</option><option value="name">Name A–Z</option><option value="difficulty">Difficulty</option></select></label>
+        </div>
+        <div class="grade-line">
+          <div id="grade-filters" class="grade-filters" role="group" aria-label="Trophy grade"></div>
+          <div class="results-tools"><span id="result-count" role="status"></span><button type="button" id="clear" hidden>Clear filters</button></div>
+        </div>
+      </div>
+      <div class="ledger-grid">
+        <div id="trophy-list" class="trophy-list" aria-label="Trophies"></div>
+        <aside id="guide-card" class="guide-card" aria-label="Selected trophy guide"></aside>
+      </div>
+    </section>
+
+    <section id="roadmap" aria-labelledby="roadmap-title" hidden>
+      <div class="section-heading">
+        <div><p class="eyebrow section-kicker">THE PLATINUM ROUTE</p><h2 id="roadmap-title">Platinum roadmap</h2></div>
+        <label class="spoiler-control"><input id="roadmap-spoilers" type="checkbox" role="switch"><span class="switch-track" aria-hidden="true"></span> Hide story spoilers</label>
+      </div>
+      <p class="roadmap-intro">Finish the story, use free roam for overlapping goals, then reconcile your in-game 100% checklist.</p>
+      <div id="route-stages" class="route-stages"></div>
+      <div id="route-watchlist" class="route-watchlist"></div>
+    </section>
+
+    <footer>
+      <span>Leonida Ledger · Unofficial PS5 trophy guide</span>
+      <details><summary>Sources &amp; estimates</summary><p>Official names, descriptions, grades and tracked counts: PlayStation trophy list, as mirrored by Exophase and PSNProfiles in the contest kit. Suggested routes use series conventions and the wording of each objective. Difficulty and times are planning estimates and can overlap. Exact triggers, replay access and unlisted locations remain unverified where flagged.</p></details>
+    </footer>
+  </main>
+  <noscript>This guide needs JavaScript to show the trophy list and save your progress.</noscript>
+</body>
+</html>

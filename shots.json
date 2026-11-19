@@ -1,0 +1,6 @@
+[
+  { "file": "1-checklist.jpg", "path": "/", "viewport": { "width": 1280, "height": 800 } },
+  { "file": "2-silver.jpg", "path": "/", "grade": "silver", "guide": 17, "spoilers": 1, "viewport": { "width": 1280, "height": 800 } },
+  { "file": "3-bronze.jpg", "path": "/", "grade": "bronze", "guide": 33, "scroll": 1400, "viewport": { "width": 1280, "height": 800 } },
+  { "file": "4-roadmap.jpg", "path": "/", "view": "roadmap", "viewport": { "width": 1280, "height": 800 } }
+]
